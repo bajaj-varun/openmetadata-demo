@@ -4,7 +4,7 @@ metadata:
   name: openmetadata-server-service
   namespace: default
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 8585
     targetPort: 8585
