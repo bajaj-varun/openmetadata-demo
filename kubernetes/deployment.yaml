@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: openmetadata-server-service
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - port: 8585
+    targetPort: 8585
+  selector:
+    app: openmetadta-server
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openmetadata-server-deployment
+  namespace: default
+  labels:
+    app: openmetadta-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openmetadta-server
+  template:
+    metadata:
+      labels:
+        app: openmetadta-server
+    spec:
+      containers:
+      - name: openmetadata-server-container
+        image: <<ACCOUNT_ID>>.dkr.ecr.ap-south-1.amazonaws.com/openmetadata-varun:latest
+        imagePullPolicy: Always
+        ports:
+          - name: server
+            containerPort: 8585
+          - name: admin
+            containerPort: 8586
+      imagePullSecrets:
+        - name: regcred
