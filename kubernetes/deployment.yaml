@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: openmetadata-server-container
-        image: <<ACCOUNT_ID>>.dkr.ecr.ap-south-1.amazonaws.com/openmetadata-varun:latest
+        image: 120569646829.dkr.ecr.ap-south-1.amazonaws.com/openmetadata-varun:latest
         imagePullPolicy: Always
         ports:
           - name: server
